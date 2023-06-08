@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Checklist</title>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById("task-input");
+            var taskList = document.getElementById("task-list");
+
+            if (taskInput.value !== "") {
+                var newTask = document.createElement("li");
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.onclick = function () {
+                    if (this.checked) {
+                        this.parentNode.style.textDecoration = "line-through";
+                    } else {
+                        this.parentNode.style.textDecoration = "none";
+                    }
+                };
+
+                var taskText = document.createTextNode(taskInput.value);
+                newTask.appendChild(checkbox);
+                newTask.appendChild(taskText);
+                taskList.appendChild(newTask);
+
+                taskInput.value = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Task Checklist</h1>
+    <input type="text" id="task-input" placeholder="Add a task">
+    <button onclick="addTask()">Add</button>
+    <ul id="task-list"></ul>
+</body>
+</html>
